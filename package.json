@@ -1,0 +1,36 @@
+{
+  "name": "browsersync-app",
+  "version": "1.0.0",
+  "description": "A standalong browsersync application built on node-webkit",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carlos A. Cabrera <ccabrera@sapient.com>",
+  "window": {
+    "title": "node-webkit demo",
+    "icon": "link.png",
+    "toolbar": true,
+    "frame": true,
+    "width": 600,
+    "height": 350,
+    "position": "mouse",
+    "min_width": 600,
+    "min_height": 350,
+    "max_width": 600,
+    "max_height": 350
+  },
+  "webkit": {
+    "plugin": false
+  },
+  "license": "ISC",
+  "dependencies": {
+    "angular": "1.4.9",
+    "angular-messages": "1.4.9",
+    "browser-sync": "2.11.1"
+  },
+  "devDependencies": {
+    "gulp": "3.9.0",
+    "node-sass": "3.4.2"
+  }
+}
