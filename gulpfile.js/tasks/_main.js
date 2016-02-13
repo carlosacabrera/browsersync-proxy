@@ -10,14 +10,5 @@ var $ = require('gulp-load-plugins')(config.plugins);
  * Tasks
  */
 
-gulp.task('watch', function () {
-    $.watch(config.javascript.listening, function () {
-        gulp.start('javascript');
-    });
-});
 
-gulp.task('build', function (callback) {
-    $.runSequence(
-        'javascript',
-        callback);
-});
+gulp.task('build', ['javascript', 'sass', 'html', 'fonts', 'images']);
