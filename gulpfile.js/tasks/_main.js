@@ -7,15 +7,11 @@ var electron = require('electron-connect').server.create();
  * Tasks
  */
 
- gulp.task('run', function() {
-  return $.run('electron .').exec();
-});
-
 gulp.task('default', ['clean'], function() {
   gulp.start(['javascript', 'sass', 'html', 'fonts', 'images']);
 });
 
-gulp.task('serve', function () {
+gulp.task('serve', ['default'], function () {
   // Start browser process
   electron.start();
 

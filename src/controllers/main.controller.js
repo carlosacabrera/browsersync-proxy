@@ -6,7 +6,7 @@ module.exports = (function($scope, $timeout) {
   $scope.sourceURL = 'http://www.carnival.com';
   $scope.proxyURL = null;
   $scope.loading = false;
-  $scope.openWindow = false;
+  $scope.openWindow = true;
 
   // Emitter listeners ---
 
@@ -23,23 +23,25 @@ module.exports = (function($scope, $timeout) {
   };
 
   $scope.proxyStop = function() {
+    $scope.loading = true;
     bs.exit();
   };
 
 
   bs.emitter.on('service:running', function(attrs) {
+    console.log('service:running', attrs);
     $timeout(function() {
       $scope.loading = false;
       $scope.proxyURL = attrs.urls;
     });
-    console.log('service:running', attrs);
   });
 
-  bs.emitter.on('service:exit', function(attrs) {
+  bs.emitter.on('service:exit', function() {
     $timeout(function() {
+      $scope.loading = false;
       $scope.proxyURL = null;
     });
-    console.log('service:exit', attrs);
+    console.log('service:exit', bs);
   });
 
 
