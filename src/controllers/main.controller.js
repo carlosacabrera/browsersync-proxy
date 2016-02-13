@@ -1,5 +1,4 @@
-const browserSync = require('browser-sync');
-var bs = browserSync.create();
+const bs = require('browser-sync').create();
 
 module.exports = (function($scope, $timeout) {
 
