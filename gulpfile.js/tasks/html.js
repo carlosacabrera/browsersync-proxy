@@ -5,5 +5,6 @@ var $ = require('gulp-load-plugins')(config.plugins);
 
 gulp.task('html', function() {
   return gulp.src(config.html.src)
+    .pipe($.useref())
     .pipe(gulp.dest(config.html.dest))
 });

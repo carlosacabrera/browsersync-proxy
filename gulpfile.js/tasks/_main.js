@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var config = require('../gulpconfig');
 var $ = require('gulp-load-plugins')(config.plugins);
-
+var electron = require('electron-connect').server.create();
 
 /*
  * Tasks
@@ -12,19 +12,20 @@ var $ = require('gulp-load-plugins')(config.plugins);
 });
 
 gulp.task('default', ['clean'], function() {
-  gulp.start(['javascript', 'sass', 'html', 'fonts', 'images', 'run']);
+  gulp.start(['javascript', 'sass', 'html', 'fonts', 'images']);
 });
 
-gulp.task('watch', function () {
-    $.livereload.listen();
-    gulp.watch(config.html.src,['html']);
-    gulp.watch(config.javascript.src,['javascript']);
-    gulp.watch(config.sass.src,['sass']);
-    gulp.watch(config.images.src,['images']);
-    gulp.watch(config.fonts.src,['fonts']);
+gulp.task('serve', function () {
+  // Start browser process
+  electron.start();
 
-    gulp.start('default');
+  // Restart browser process
+  gulp.watch('index.js', electron.restart);
+
+  // Reload renderer process
+  gulp.watch(config.html.src,['html', electron.reload]);
+  gulp.watch(config.javascript.src,['javascript', electron.reload]);
+  gulp.watch(config.sass.src,['sass', electron.reload]);
+  gulp.watch(config.images.src,['images', electron.reload]);
+  gulp.watch(config.fonts.src,['fonts', electron.reload]);
 });
-
-
-gulp.task('build', ['default']);
