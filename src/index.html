@@ -7,52 +7,54 @@
 
     <title>BrowserSyncApp</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./app.css">
 
   </head>
-  <body ng-controller="ProxyController">
-    <header class="titlebar">
-      Some App
-      <i class="fa fa-times-circle" ng-click="close()"></i>
-      <i class="fa fa-minus-circle" ng-click="minimize()"></i>
-    </header>
-    <section>
-      <h1>
-        <i class="fa fa-beer"></i>
-        Hello World!</h1>
+  <body>
+    <div ng-controller="MainCrtl">
 
-      <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && proxyStart()">
-        <label for="proxy-url">Enter Url</label><br/>
-        <input required type="url" name="sourceURL" ng-model="sourceURL" placeholder="http://www.sapient.com"/>
-        <label>
-          <input type="checkbox" name="openWindow" ng-model="openWindow" />
-          open on browser
-        </label>
-        <button type="submit" ng-if="proxyForm.$valid" name="proxy-start" ng-hide="proxyURL">Start <i class="fa fa-play"></i></button>
-        <button type="button" name="proxy-stop" ng-show="proxyURL" ng-click="proxyStop()">Stop <i class="fa fa-stop"></i></button>
-        <div ng-if="loading" class="loading">
-          loading...
-        </div>
-        <ng-messages for="proxyForm.sourceURL.$error" role="alert">
-          <ng-message when="url">make sure the url is valid. hint http://www.sapient.com</ng-message>
-          <ng-message when="required">start by adding a url</ng-message>
-        </ng-messages>
-      </form>
-    </section>
-    <section ng-if="proxyURL">
-      <em>
-        <a ng-href="proxyURL.local" target="_blank">
-          <i class="fa fa-desktop"></i> {{proxyURL.local}}
-        </a
-        <br />
-        <a ng-href="proxyURL.external" target="_blank">
-          <i class="fa fa-globe"></i> {{proxyURL.external}}
-        </a>
+      <section>
+        <h1>
+          <i class="fa fa-beer"></i>
+          Hello World!</h1>
 
-      </em>
-    </section>
-    <script src="../node_modules/angular/angular.js"></script>
-      <script src="../node_modules/angular-messages/angular-messages.js"></script>
-    <script src="app.js"></script>
+        <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && proxyStart()">
+          <label for="proxy-url">Enter Url</label><br/>
+          <input required type="url" name="sourceURL" ng-model="sourceURL" placeholder="http://www.sapient.com"/>
+          <label>
+            <input type="checkbox" name="openWindow" ng-model="openWindow"/>
+            open on browser
+          </label>
+          <button type="submit" ng-if="proxyForm.$valid" name="proxy-start" ng-hide="proxyURL">Start
+            <i class="fa fa-play"></i>
+          </button>
+          <button type="button" name="proxy-stop" ng-show="proxyURL" ng-click="proxyStop()">Stop
+            <i class="fa fa-stop"></i>
+          </button>
+          <div ng-if="loading" class="loading">
+            loading...
+          </div>
+          <ng-messages for="proxyForm.sourceURL.$error" role="alert">
+            <ng-message when="url">make sure the url is valid. hint http://www.sapient.com</ng-message>
+            <ng-message when="required">start by adding a url</ng-message>
+          </ng-messages>
+        </form>
+      </section>
+      <section ng-if="proxyURL">
+        <em>
+          <a ng-href="proxyURL.local" target="_blank">
+            <i class="fa fa-desktop"></i>
+            {{proxyURL.local}}
+          </a <br />
+          <a ng-href="proxyURL.external" target="_blank">
+            <i class="fa fa-globe"></i>
+            {{proxyURL.external}}
+          </a>
+
+        </em>
+      </section>
+    </div>
+
+    <script src="./app.js"></script>
   </body>
 </html>

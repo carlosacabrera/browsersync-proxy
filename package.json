@@ -4,9 +4,10 @@
   "description": "A standalong browsersync application built on Electron",
   "author": "Carlos A. Cabrera <ccabrera@sapient.com>",
   "license": "ISC",
-  "main": "src/app.js",
+  "main": "index.js",
   "scripts": {
-    "build": "gulp build && electron .",
+    "build": "gulp build",
+    "watch": "gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -19,11 +20,12 @@
     "electron-prebuilt": "0.36.7",
     "gulp": "3.9.0",
     "gulp-babel": "6.1.2",
-    "gulp-clean": "^0.3.1",
+    "gulp-clean": "0.3.1",
+    "gulp-livereload": "3.8.1",
     "gulp-load-plugins": "1.2.0",
     "gulp-plumber": "1.0.1",
-    "gulp-run-sequence": "0.3.2",
-    "node-sass": "3.4.2",
+    "gulp-run": "1.6.12",
+    "gulp-sass": "2.2.0",
     "require-dir": "0.3.0"
   }
 }
