@@ -2,10 +2,7 @@
 @import url("fonts/Roboto/font-roboto.css");
 @import url("fonts/FontAwesome/font-awesome.css");
 @import url("fonts/Waiting_for_the_Sunrise/waiting-for-the-sunrise.css");
-
-
 /* Styling */
-
 body {
   -webkit-user-select: none;
   font-family: 'Roboto', sans-serif;
@@ -13,32 +10,46 @@ body {
   color: #222;
   padding: 0;
   margin: 0;
-  background: url("images/bg.png") repeat;
+  background: url(images/bg.png) repeat;
 }
-
-
-header.titlebar {
-  -webkit-app-region: drag;
-  display: block;
-  background: #222;
-  height: 28px;
+button.fa {
+  display: inline-block;
+  background: transparent;
+  border: 0 none;
+}
+header#header {
+  background: #000;
   color: #fff;
-  text-align: center;
-  text-transform: lowercase;
-  font-size: 12px;
-  padding: 7px 5px;
-  box-sizing: border-box;
+  padding: 12px;
+  form {
+    position: relative;
+  }
+  #logo-icon {
+    color: cyan;
+  }
+  #field-sourceURL {
+    border-radius: 11px;
+    border: 0 none;
+    padding: 4px 10px;
+    width: 85%;
+    line-height: 0;
+  }
+  #button-start,
+  #button-stop {
+    font-size: 15px;
+    position: absolute;
+    right: 0px;
+    top: 1px;
+  }
+  #button-start {
+    color: green;
+  }
+  #button-stop {
+    color: red;
+  }
 }
-
-header.titlebar .fa,
-header.titlebar .fa {
-  float: left;
-  font-size: 16px;
-  margin: 0 4px;
-}
-
-h1 {
-  font-family: 'Sunrise', sans-serif;
-  font-size: 46px;
-  color: #333;
-}
+// h1 {
+//   font-family: 'Sunrise', sans-serif;
+//   font-size: 46px;
+//   color: #333;
+// }

@@ -22,10 +22,10 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    minWidth: 800,
-    height: 600,
-    minHeight: 600,
+    width: 300,
+    minWidth: 300,
+    height: 450,
+    minHeight: 450,
     backgroundColor: '#000',
     // icon : '',
     type: 'textured',
