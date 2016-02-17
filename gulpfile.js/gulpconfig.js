@@ -32,8 +32,9 @@ module.exports = {
 	},
 
   sass: {
-    src: folder.app + 'app.scss',
-    dest: folder.dest
+    src: folder.app + '**/*.scss',
+    dest: folder.dest,
+    main: folder.app + 'app.scss'
   },
 
   javascript: {

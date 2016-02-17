@@ -3,10 +3,23 @@ const bs = require('browser-sync').create();
 module.exports = (function($scope, $timeout) {
 
   // Default values ---
-  $scope.sourceURL = 'http://www.carnival.com';
+  $scope.sourceURL = '';
   $scope.proxyURL = null;
   $scope.loading = false;
-  $scope.openWindow = true;
+
+  $scope.settings = {
+    openWindow: false,
+    clicks: true,
+    forms: true,
+    scroll: true
+  };
+
+
+    $scope.steps = {
+      one: false,
+      two: false
+    };
+
 
   // Emitter listeners ---
 
@@ -18,7 +31,12 @@ module.exports = (function($scope, $timeout) {
 
     bs.init({
       proxy: $scope.sourceURL,
-      open: $scope.openWindow
+      open: $scope.settings.openWindow,
+      ghostMode: {
+        clicks: $scope.settings.clicks,
+        forms: $scope.settings.forms,
+        scroll: $scope.settings.scroll
+      }
     });
   };
 
