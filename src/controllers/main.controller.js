@@ -3,6 +3,7 @@ const bs = require('browser-sync').create();
 module.exports = (function($scope, $timeout) {
 
   // Default values ---
+  $scope.running = false;
   $scope.sourceURL = '';
   $scope.proxyURL = null;
   $scope.loading = false;
@@ -13,16 +14,6 @@ module.exports = (function($scope, $timeout) {
     forms: true,
     scroll: true
   };
-
-
-    $scope.steps = {
-      one: false,
-      two: false
-    };
-
-
-  // Emitter listeners ---
-
 
   // methods ---
 
@@ -38,6 +29,7 @@ module.exports = (function($scope, $timeout) {
         scroll: $scope.settings.scroll
       }
     });
+
   };
 
   $scope.proxyStop = function() {
@@ -50,6 +42,7 @@ module.exports = (function($scope, $timeout) {
     console.log('service:running', attrs);
     $timeout(function() {
       $scope.loading = false;
+      $scope.running = true;
       $scope.proxyURL = attrs.urls;
     });
   });
@@ -57,6 +50,7 @@ module.exports = (function($scope, $timeout) {
   bs.emitter.on('service:exit', function() {
     $timeout(function() {
       $scope.loading = false;
+      $scope.running = false;
       $scope.proxyURL = null;
     });
     console.log('service:exit', bs);

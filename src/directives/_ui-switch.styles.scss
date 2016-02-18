@@ -63,6 +63,11 @@
 .switch-input:checked ~ .switch-label:after {
   opacity: 1;
 }
+
+.switch-input:disabled ~ .switch-label {
+  opacity: 0.35;
+}
+
 .switch-handle {
   position: absolute;
   top: 4px;
@@ -126,7 +131,7 @@
 .switch-left-right .switch-label:after {
   text-align: left;
   text-indent: 9px;
-  background: #FF7F50;
+  background: $colorUI;
   left: -100px;
   opacity: 1;
   width: 100%;

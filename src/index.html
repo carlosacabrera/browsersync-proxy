@@ -11,102 +11,125 @@
 
   </head>
   <body>
-    <div ng-controller="MainCrtl">
+    <div ng-controller="MainCrtl" ng-class="{ running: running }">
 
-      <section id="proxy" ng-class="{active: proxyURL}">
-
+      <!-- Form  -->
+      <section id="proxy">
         <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && proxyStart()">
           <input id="field-sourceURL" required type="url" name="sourceURL" ng-model="sourceURL" placeholder="http://www.sapient.com"/>
-
-          <button id="button-start" class="fa fa-play-circle" type="submit" ng-if="proxyForm.$valid" name="proxy-start" ng-hide="proxyURL"></button>
-
-          <button id="button-stop" class="fa fa-stop-circle" type="button" name="proxy-stop" ng-show="proxyURL" ng-click="proxyStop()"></button>
         </form>
-        <button id="options-btn" type="button" ng-click="options.show = true" class="fa fa-cog"></button>
+      </section>
 
-        <div ng-if="loading" class="loading">
-          loading...
+      <!-- Settings  -->
+      <div id="settings">
+
+        <div class="settings-item">
+          <strong>
+            <i class="fa fa-chrome"></i>
+            open in browser</strong>
+
+          <label class="switch switch-left-right">
+            <input class="switch-input" type="checkbox" name="settings.openWindow" ng-model="settings.openWindow"/>
+            <span class="switch-label" data-on="On" data-off="Off"></span>
+            <span class="switch-handle"></span>
+          </label>
         </div>
 
-        <div ng-if="proxyURL" class="content">
+        <div class="settings-item">
+          <strong>
+            <i class="fa fa-hand-pointer-o"></i>
+            clicks</strong>
 
-          <em>
-            <a ng-href="{{proxyURL.local}}" target="_blank">
-              <i class="fa fa-desktop"></i>
-              {{proxyURL.local}}
-            </a <br />
-            <a ng-href="{{proxyURL.external}}" target="_blank">
-              <i class="fa fa-globe"></i>
-              {{proxyURL.external}}
-            </a>
-          </em>
+          <label class="switch switch-left-right">
+            <input class="switch-input" type="checkbox" name="settings.clicks" ng-model="settings.clicks"/>
+            <span class="switch-label" data-on="On" data-off="Off"></span>
+            <span class="switch-handle"></span>
+          </label>
+        </div>
+        <div class="settings-item">
+          <strong>
+            <i class="fa fa-i-cursor"></i>
+            forms</strong>
+
+          <label class="switch switch-left-right">
+            <input class="switch-input" type="checkbox" name="settings.forms" ng-model="settings.forms"/>
+            <span class="switch-label" data-on="On" data-off="Off"></span>
+            <span class="switch-handle"></span>
+          </label>
+        </div>
+        <div class="settings-item">
+          <strong>
+            <i class="fa fa-arrows"></i>
+            scroll</strong>
+
+          <label class="switch switch-left-right">
+            <input class="switch-input" type="checkbox" name="settings.scroll" ng-model="settings.scroll"/>
+            <span class="switch-label" data-on="On" data-off="Off"></span>
+            <span class="switch-handle"></span>
+          </label>
+        </div>
+
+      </div>
+
+      <section id="proxy-running" class="overlay" ng-if="running">
+        <div class="overlay-content">
+
+          <div ng-if="loading" class="loading">
+            loading...
+          </div>
+
+          <div class="proxy-urls" ng-if="proxyURL">
+            <ul>
+              <li>
+                <strong>
+                  <i class="fa fa-desktop"></i>
+                  Local</strong>
+                <a ng-href="{{proxyURL.local}}" target="_blank">
+                  {{proxyURL.local}}
+                </a>
+              </li>
+              <li>
+                <strong>
+                  <i class="fa fa-wifi"></i>
+                  External</strong>
+                <a ng-href="{{proxyURL.external}}" target="_blank">
+                  {{proxyURL.external}}
+                </a>
+              </li>
+              <li>
+                <strong>
+                  <i class="fa fa-bullseye"></i>
+                  Proxying</strong>
+                <a ng-href="{{sourceURL}}" target="_blank">
+                  {{sourceURL}}
+                </a>
+              </li>
+            </ul>
+
+          </div>
+
+          <footer>
+            <button id="button-stop" class="fa fa-stop-circle" type="button" name="proxy-stop" ng-disabled="!running" ng-click="proxyStop()">
+              Stop
+            </button>
+          </footer>
 
         </div>
       </section>
 
-      <div id="settings" class="overlay" ng-if="options.show">
-        <div class="overlay-content">
+      <footer>
+        <button id="button-start" class="fa fa-play-circle" type="button" ng-click="proxyForm.submit()" ng-disabled="proxyForm.$invalid">
+          Start
+        </button>
+      </footer>
 
-          <header>
-            <h2>Options</h2>
-            <i class="close-btn fa fa-close" ng-click="options.show = false"></i>
-          </header>
+    </div>
+    <!-- build:remove -->
+    <script>
+      require('electron-connect').client.create()
+    </script>
+    <!-- endbuild -->
 
-          <div class="settings-item">
-            <strong>
-              <i class="fa fa-chrome"></i>
-              open in browser</strong>
-
-            <label class="switch switch-left-right">
-              <input class="switch-input" type="checkbox" name="settings.openWindow" ng-model="settings.openWindow"/>
-              <span class="switch-label" data-on="On" data-off="Off"></span>
-              <span class="switch-handle"></span>
-            </label>
-          </div>
-
-          <div class="settings-item">
-            <strong>
-              <i class="fa fa-hand-pointer-o"></i>
-              clicks</strong>
-
-            <label class="switch switch-left-right">
-              <input class="switch-input" type="checkbox" name="settings.clicks" ng-model="settings.clicks"/>
-              <span class="switch-label" data-on="On" data-off="Off"></span>
-              <span class="switch-handle"></span>
-            </label>
-          </div>
-          <div class="settings-item">
-            <strong>
-              <i class="fa fa-i-cursor"></i>
-              forms</strong>
-
-            <label class="switch switch-left-right">
-              <input class="switch-input" type="checkbox" name="settings.forms" ng-model="settings.forms"/>
-              <span class="switch-label" data-on="On" data-off="Off"></span>
-              <span class="switch-handle"></span>
-            </label>
-          </div>
-          <div class="settings-item">
-            <strong>
-              <i class="fa fa-arrows"></i>
-              scroll</strong>
-
-            <label class="switch switch-left-right">
-              <input class="switch-input" type="checkbox" name="settings.scroll" ng-model="settings.scroll"/>
-              <span class="switch-label" data-on="On" data-off="Off"></span>
-              <span class="switch-handle"></span>
-            </label>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- build:remove -->
-      <script>
-        require('electron-connect').client.create()
-      </script>
-      <!-- endbuild -->
-
-      <script src="./app.js"></script>
-    </body>
-  </html>
+    <script src="./app.js"></script>
+  </body>
+</html>

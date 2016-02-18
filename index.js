@@ -27,14 +27,14 @@ app.on('ready', function() {
 
   mainWindow = new BrowserWindow({
     width: _width,
-    minWidth: _width,
-    maxWidth: _width,
     height: _height,
-    minHeight: _height,
-    maxHeight: _height,
-    backgroundColor: '#000',
+    resizable: false,
+    maximizable: false,
+    fullscreenable: false,
+    preload: true,
+    backgroundColor: 'transparent',
     // icon : '',
-    type: 'textured',
+    // type: 'textured',
     title: 'Some App'
   });
 
