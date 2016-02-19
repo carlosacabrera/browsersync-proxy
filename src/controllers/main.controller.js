@@ -1,4 +1,5 @@
 const browserSync = require('browser-sync');
+const devip = require('dev-ip');
 
 module.exports = (function($scope, $timeout) {
 
@@ -31,12 +32,19 @@ module.exports = (function($scope, $timeout) {
         scroll: $scope.settings.scroll
       }
     }, function(err, _bs) {
+      var port = _bs.options.get('port');
       var urls = _bs.options.get('urls')._root.entries;
-      console.log('RUNNING', urls);
+      console.log('RUNNING', _bs);
       $timeout(function() {
         $scope.loading = false;
         $scope.running = true;
-        $scope.proxyURL = urls;
+        $scope.ip = {
+          protocol: 'http',
+          port: port,
+          local: urls[0][1],
+          externals: devip(), // [ "192.168.1.76", "192.168.1.80" ] or false if nothing found (ie, offline user)
+          proxy: _bs.proxy.config.target
+        }
       });
 
 

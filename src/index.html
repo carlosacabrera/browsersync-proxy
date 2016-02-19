@@ -78,32 +78,42 @@
       <section id="proxy-running" class="overlay" ng-if="running">
         <div class="overlay-content">
 
-          <ul class="proxy-urls">
-            <li>
+          <div class="proxy-urls">
+
+            <!-- Local Host -->
+            <div ng-if="ip.local">
               <strong>
                 <i class="fa fa-desktop"></i>
                 Local</strong>
-              <a ng-href="{{entry[0]}}" target="_blank">
-                {{proxyURL[0][1]}}
+              <a ng-href="{{ip.local}}" target="_blank">
+                {{ip.local}}
               </a>
-            </li>
-            <li>
+            </div>
+
+            <!-- External IPs  -->
+            <div ng-if="ip.externals">
               <strong>
                 <i class="fa fa-wifi"></i>
                 External</strong>
-              <a ng-href="{{proxyURL.external}}" target="_blank">
-                {{proxyURL[1][1]}}
-              </a>
-            </li>
-            <li>
+              <ul>
+                <li ng-repeat="externalIP in ip.externals">
+                  <a ng-href="{{$parent.ip.protocol}}://{{externalIP}}:{{$parent.ip.port}}" target="_blank">
+                    {{$parent.ip.protocol}}://{{externalIP}}:{{$parent.ip.port}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Proxy URL -->
+            <div ng-if="ip.proxy">
               <strong>
                 <i class="fa fa-bullseye"></i>
                 Proxying</strong>
-              <a ng-href="{{sourceURL}}" target="_blank">
-                {{sourceURL}}
+              <a ng-href="{{ip.proxy}}" target="_blank">
+                {{ip.proxy}}
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
 
           <footer>
             <button id="button-stop" type="button" name="proxy-stop" ng-disabled="!running" ng-click="proxyStop()">

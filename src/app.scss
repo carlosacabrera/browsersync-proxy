@@ -104,33 +104,41 @@ button.fa {
   }
 }
 #proxy-running {
-  ul.proxy-urls {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    li {
+  .proxy-urls {
+    > div {
       padding: 0 0 18px;
-      strong {
-        text-transform: uppercase;
-        font-weight: 400;
-        font-size: 11px;
-        display: block;
-        // padding-bottom: 4px;
-        color: #666;
-        letter-spacing: 1px;
-        .fa {
-          display: inline-block;
-          font-size: 14px;
+
+
+              strong {
+                text-transform: uppercase;
+                font-weight: 400;
+                font-size: 11px;
+                display: block;
+                // padding-bottom: 4px;
+                color: #666;
+                letter-spacing: 1px;
+                .fa {
+                  display: inline-block;
+                  font-size: 14px;
+                }
+              }
+              a {
+                color: inherit;
+                font-size: 12px;
+                text-overflow: ellipsis;
+                padding-left: 21px;
+              }
+              
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        padding-bottom: 4px;
+        &:last-of-type {
+          padding-bottom: 0;
         }
-      }
-      a {
-        color: inherit;
-        font-size: 12px;
-        text-overflow: ellipsis;
-        padding-left: 21px;
-      }
-      &:last-of-type {
-        padding-bottom: 0;
       }
     }
   }
