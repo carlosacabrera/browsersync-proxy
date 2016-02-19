@@ -1,4 +1,10 @@
-$colorUI: #FF7F50;
+$colorHeader: #34495e;
+$colorUI: #3498db;
+$colorGreen: #27ae60;
+$colorRed: #e74c3c;
+$colorDark: #7f8c8d;
+$colorText: #2c3e50;
+$colorBG: #ecf0f1;
 * {
   box-sizing: border-box;
 }
@@ -28,7 +34,7 @@ a {
   transition: box-shadow 0.25s ease-in-out;
   text-transform: uppercase;
   color: #fff;
-  background: #ff7f50;
+  background: $colorUI;
   border-radius: 3px;
   font-size: 14px;
   padding: 14px 46px;
@@ -41,7 +47,7 @@ a {
     box-shadow: 0 0 0 3px rgba(255,255,255,0.5) inset;
   }
   &:disabled {
-    background: #ccc;
+    opacity: 0.5;
     cursor: default;
   }
 }
@@ -55,10 +61,10 @@ body {
   -webkit-user-select: none;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  color: #222;
+  color: $colorText;
   padding: 18px;
   margin: 0;
-  background: #fff;
+  background: $colorBG;
 }
 button.fa {
   display: inline-block;
@@ -68,12 +74,13 @@ button.fa {
 #button-start,
 #button-stop {
   @extend %button;
+  width: 160px;
 }
 #button-start {
-  background-color: green;
+  background-color: $colorGreen;
 }
 #button-stop {
-  background-color: red;
+  background-color: $colorRed;
 }
 #field-sourceURL {
   transition: box-shadow 0.30s ease-in-out;
@@ -91,12 +98,10 @@ button.fa {
     box-shadow: 0 0 5px rgba(81, 82, 238, 1);
   }
 }
-#proxy {
-  // background-image: url(images/bsoff.gif);
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  // height: 300px;
+#window-header {
+  background: $colorHeader;
+  padding: 28px 18px 14px;
+  margin: -18px -18px 0;
   position: relative;
   form {
     display: inline-block;
@@ -107,28 +112,24 @@ button.fa {
   .proxy-urls {
     > div {
       padding: 0 0 18px;
-
-
-              strong {
-                text-transform: uppercase;
-                font-weight: 400;
-                font-size: 11px;
-                display: block;
-                // padding-bottom: 4px;
-                color: #666;
-                letter-spacing: 1px;
-                .fa {
-                  display: inline-block;
-                  font-size: 14px;
-                }
-              }
-              a {
-                color: inherit;
-                font-size: 12px;
-                text-overflow: ellipsis;
-                padding-left: 21px;
-              }
-              
+      strong {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 11px;
+        display: block;
+        // padding-bottom: 4px;
+        letter-spacing: 1px;
+        .fa {
+          display: inline-block;
+          font-size: 14px;
+        }
+      }
+      a {
+        color: inherit;
+        font-size: 12px;
+        text-overflow: ellipsis;
+        padding-left: 21px;
+      }
     }
     ul {
       margin: 0;
@@ -150,26 +151,26 @@ button.fa {
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: rgba(0,0,0,0.80);
+  background-color: rgba(255,255,255,0.95);
   .overlay-content {
     @extend %center;
     position: absolute;
     z-index: 2;
     width: 95%;
     padding: 12px;
-    background-color: rgba(0,0,0,0.75);
-    box-shadow: 0 0 50px #000;
-    border-radius: 4px;
-    color: #fff;
+    // background-color: rgba(0,0,0,0.75);
+    // box-shadow: 0 0 50px #000;
+    // border-radius: 4px;
+    // color: #fff;
   }
 }
 #settings {
   margin-top: 20px;
   .settings-item {
     @include clearfix;
-    padding: 2px 0;
+    padding: 4px 0;
     margin: 4px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom:1px solid #ddd;
     &:last-of-type {
       border-bottom: 0 none;
       box-shadow: 0 0 0;
@@ -194,4 +195,18 @@ button.fa {
 footer {
   text-align: center;
   padding: 24px 0 0;
+}
+.loading {
+  animation-name: spinnerRotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spinnerRotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }

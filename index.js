@@ -32,10 +32,10 @@ app.on('ready', function() {
     maximizable: false,
     fullscreenable: false,
     preload: true,
-    backgroundColor: 'transparent',
+    titleBarStyle: 'hidden',
     // icon : '',
     // type: 'textured',
-    title: 'Some App'
+    // title: 'Some App'
   });
 
   // and load the index.html of the app.

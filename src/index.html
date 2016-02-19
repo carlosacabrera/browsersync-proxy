@@ -14,11 +14,11 @@
     <div ng-controller="MainCrtl" ng-class="{ running: running }">
 
       <!-- Form  -->
-      <section id="proxy">
+      <header id="window-header">
         <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && proxyStart()">
           <input id="field-sourceURL" required type="url" name="sourceURL" ng-model="sourceURL" placeholder="http://www.sapient.com"/>
         </form>
-      </section>
+      </header>
 
       <!-- Settings  -->
       <div id="settings">
@@ -69,10 +69,6 @@
           </label>
         </div>
 
-      </div>
-
-      <div ng-if="loading" class="loading">
-        loading...
       </div>
 
       <section id="proxy-running" class="overlay" ng-if="running">
@@ -126,7 +122,7 @@
 
       <footer>
         <button id="button-start" type="button" ng-click="proxyStart()" ng-disabled="proxyForm.$invalid">
-          Start
+          Start <i ng-if="loading" class="loading fa fa-spinner"></i>
         </button>
 
       </footer>
