@@ -71,45 +71,42 @@
 
       </div>
 
+      <div ng-if="loading" class="loading">
+        loading...
+      </div>
+
       <section id="proxy-running" class="overlay" ng-if="running">
         <div class="overlay-content">
 
-          <div ng-if="loading" class="loading">
-            loading...
-          </div>
-
-          <div class="proxy-urls" ng-if="proxyURL">
-            <ul>
-              <li>
-                <strong>
-                  <i class="fa fa-desktop"></i>
-                  Local</strong>
-                <a ng-href="{{proxyURL.local}}" target="_blank">
-                  {{proxyURL.local}}
-                </a>
-              </li>
-              <li>
-                <strong>
-                  <i class="fa fa-wifi"></i>
-                  External</strong>
-                <a ng-href="{{proxyURL.external}}" target="_blank">
-                  {{proxyURL.external}}
-                </a>
-              </li>
-              <li>
-                <strong>
-                  <i class="fa fa-bullseye"></i>
-                  Proxying</strong>
-                <a ng-href="{{sourceURL}}" target="_blank">
-                  {{sourceURL}}
-                </a>
-              </li>
-            </ul>
-
-          </div>
+          <ul class="proxy-urls">
+            <li>
+              <strong>
+                <i class="fa fa-desktop"></i>
+                Local</strong>
+              <a ng-href="{{entry[0]}}" target="_blank">
+                {{proxyURL[0][1]}}
+              </a>
+            </li>
+            <li>
+              <strong>
+                <i class="fa fa-wifi"></i>
+                External</strong>
+              <a ng-href="{{proxyURL.external}}" target="_blank">
+                {{proxyURL[1][1]}}
+              </a>
+            </li>
+            <li>
+              <strong>
+                <i class="fa fa-bullseye"></i>
+                Proxying</strong>
+              <a ng-href="{{sourceURL}}" target="_blank">
+                {{sourceURL}}
+              </a>
+            </li>
+          </ul>
 
           <footer>
-            <button id="button-stop" class="fa fa-stop-circle" type="button" name="proxy-stop" ng-disabled="!running" ng-click="proxyStop()">
+            <button id="button-stop" type="button" name="proxy-stop" ng-disabled="!running" ng-click="proxyStop()">
               Stop
             </button>
           </footer>
@@ -118,9 +115,10 @@
       </section>
 
       <footer>
-        <button id="button-start" class="fa fa-play-circle" type="button" ng-click="proxyForm.submit()" ng-disabled="proxyForm.$invalid">
+        <button id="button-start" type="button" ng-click="proxyStart()" ng-disabled="proxyForm.$invalid">
           Start
         </button>
+
       </footer>
 
     </div>

@@ -25,24 +25,23 @@ a {
   transform: translateX(-50%) translateY(-50%);
 }
 %button {
+  transition: box-shadow 0.25s ease-in-out;
   text-transform: uppercase;
   color: #fff;
   background: #ff7f50;
-  // text-shadow: 0 1px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
-  font-size: 12px;
-  padding: 10px 26px;
+  font-size: 14px;
+  padding: 14px 46px;
   border: 0 none;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 0 3px #ddd;
-  &:hover {
-    box-shadow: 0 0 0 3px #ccc;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.25) inset;
+  &:hover:not(:disabled) {
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.5) inset;
   }
   &:disabled {
     background: #ccc;
-    box-shadow: 0 0 0 3px #ddd;
     cursor: default;
   }
 }
@@ -66,21 +65,16 @@ button.fa {
   background: transparent;
   border: 0 none;
 }
-
-
 #button-start,
 #button-stop {
   @extend %button;
 }
-
 #button-start {
   background-color: green;
 }
-
 #button-stop {
   background-color: red;
 }
-
 #field-sourceURL {
   transition: box-shadow 0.30s ease-in-out;
   border-radius: 8px;
@@ -97,7 +91,6 @@ button.fa {
     box-shadow: 0 0 5px rgba(81, 82, 238, 1);
   }
 }
-
 #proxy {
   // background-image: url(images/bsoff.gif);
   background-position: top left;
@@ -111,36 +104,33 @@ button.fa {
   }
 }
 #proxy-running {
-  .proxy-urls {
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      li {
-        padding: 0 0 18px;
-        strong {
-          text-transform: uppercase;
-          font-weight: 400;
-          font-size: 11px;
-          display: block;
-          // padding-bottom: 4px;
-          color: #666;
-          letter-spacing: 1px;
-          .fa {
-            display: inline-block;
-            font-size: 14px;
-          }
+  ul.proxy-urls {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      padding: 0 0 18px;
+      strong {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 11px;
+        display: block;
+        // padding-bottom: 4px;
+        color: #666;
+        letter-spacing: 1px;
+        .fa {
+          display: inline-block;
+          font-size: 14px;
         }
-        a {
-          color: inherit;
-          font-size: 12px;
-          text-overflow: ellipsis;
-          padding-left: 21px;
-        }
-
-        &:last-of-type {
-          padding-bottom: 0;
-        }
+      }
+      a {
+        color: inherit;
+        font-size: 12px;
+        text-overflow: ellipsis;
+        padding-left: 21px;
+      }
+      &:last-of-type {
+        padding-bottom: 0;
       }
     }
   }
@@ -163,23 +153,6 @@ button.fa {
     box-shadow: 0 0 50px #000;
     border-radius: 4px;
     color: #fff;
-    // header {
-    //   padding-bottom: 20px;
-    //   h2 {
-    //     font-size: 10px;
-    //     text-transform: uppercase;
-    //     letter-spacing: 1px;
-    //     color: #777;
-    //     margin: 0;
-    //   }
-    //   .close-btn {
-    //     font-size: 15px;
-    //     position: absolute;
-    //     top: 9px;
-    //     right: 9px;
-    //     cursor: pointer;
-    //   }
-    // }
   }
 }
 #settings {
@@ -210,8 +183,6 @@ button.fa {
     }
   }
 }
-
-
 footer {
   text-align: center;
   padding: 24px 0 0;

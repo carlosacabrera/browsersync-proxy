@@ -1,4 +1,4 @@
-const bs = require('browser-sync').create();
+const browserSync = require('browser-sync');
 
 module.exports = (function($scope, $timeout) {
 
@@ -20,7 +20,9 @@ module.exports = (function($scope, $timeout) {
   $scope.proxyStart = function() {
     $scope.loading = true;
 
-    bs.init({
+    $scope.bs = browserSync.create();
+
+    $scope.bs.init({
       proxy: $scope.sourceURL,
       open: $scope.settings.openWindow,
       ghostMode: {
@@ -28,33 +30,35 @@ module.exports = (function($scope, $timeout) {
         forms: $scope.settings.forms,
         scroll: $scope.settings.scroll
       }
+    }, function(err, _bs) {
+      var urls = _bs.options.get('urls')._root.entries;
+      console.log('RUNNING', urls);
+      $timeout(function() {
+        $scope.loading = false;
+        $scope.running = true;
+        $scope.proxyURL = urls;
+      });
+
+
+      _bs.events.on('service:exit', function() {
+        console.log('EXIT');
+        $timeout(function() {
+          $scope.loading = false;
+          $scope.running = false;
+          $scope.proxyURL = null;
+        });
+      });
     });
 
   };
 
   $scope.proxyStop = function() {
     $scope.loading = true;
-    bs.exit();
+    $scope.bs.exit();
   };
 
 
-  bs.emitter.on('service:running', function(attrs) {
-    console.log('service:running', attrs);
-    $timeout(function() {
-      $scope.loading = false;
-      $scope.running = true;
-      $scope.proxyURL = attrs.urls;
-    });
-  });
 
-  bs.emitter.on('service:exit', function() {
-    $timeout(function() {
-      $scope.loading = false;
-      $scope.running = false;
-      $scope.proxyURL = null;
-    });
-    console.log('service:exit', bs);
-  });
 
 
 });
