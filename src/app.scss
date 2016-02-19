@@ -100,12 +100,13 @@ button.fa {
   &.ng-invalid:focus {
     box-shadow: 0 0 5px rgba(81, 82, 238, 1);
   }
-  &:disabled {
+  &:disabled, &:disabled ~ .fa {
     background: transparent;
     border-color: transparent;
     color: #fff;
   }
 }
+
 #window-header {
   background: $colorHeader;
   padding: 28px 18px 14px;

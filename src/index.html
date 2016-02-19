@@ -16,9 +16,9 @@
       <!-- Form  -->
       <header id="window-header">
         <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && !running && proxyStart()">
-          <i class="fa fa-bullseye"></i>
           <input id="field-sourceURL" placeholder="http://www.sapient.com"
             required type="url" name="sourceURL" ng-disabled="running" ng-model="sourceURL" />
+          <i class="fa fa-bullseye"></i>
         </form>
       </header>
 
