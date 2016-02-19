@@ -15,66 +15,73 @@
 
       <!-- Form  -->
       <header id="window-header">
-        <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && proxyStart()">
-          <input id="field-sourceURL" required type="url" name="sourceURL" ng-model="sourceURL" placeholder="http://www.sapient.com"/>
+        <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && !running && proxyStart()">
+          <i class="fa fa-bullseye"></i>
+          <input id="field-sourceURL" placeholder="http://www.sapient.com"
+            required type="url" name="sourceURL" ng-disabled="running" ng-model="sourceURL" />
         </form>
       </header>
 
-      <!-- Settings  -->
-      <div id="settings">
+      <!-- Main  -->
+      <section id="main" class="flip-container">
+        <div class="flipper">
+          <div id="settings" class="front">
 
-        <div class="settings-item">
-          <strong>
-            <i class="fa fa-chrome"></i>
-            open in browser</strong>
+            <div class="settings-item">
+              <strong>
+                <i class="fa fa-chrome"></i>
+                open in browser</strong>
 
-          <label class="switch switch-left-right">
-            <input class="switch-input" type="checkbox" name="settings.openWindow" ng-model="settings.openWindow"/>
-            <span class="switch-label" data-on="On" data-off="Off"></span>
-            <span class="switch-handle"></span>
-          </label>
-        </div>
+              <label class="switch switch-left-right">
+                <input class="switch-input" type="checkbox" name="settings.openWindow" ng-model="settings.openWindow"/>
+                <span class="switch-label" data-on="On" data-off="Off"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </div>
 
-        <div class="settings-item">
-          <strong>
-            <i class="fa fa-hand-pointer-o"></i>
-            clicks</strong>
+            <div class="settings-item">
+              <strong>
+                <i class="fa fa-hand-pointer-o"></i>
+                clicks</strong>
 
-          <label class="switch switch-left-right">
-            <input class="switch-input" type="checkbox" name="settings.clicks" ng-model="settings.clicks"/>
-            <span class="switch-label" data-on="On" data-off="Off"></span>
-            <span class="switch-handle"></span>
-          </label>
-        </div>
-        <div class="settings-item">
-          <strong>
-            <i class="fa fa-i-cursor"></i>
-            forms</strong>
+              <label class="switch switch-left-right">
+                <input class="switch-input" type="checkbox" name="settings.clicks" ng-model="settings.clicks"/>
+                <span class="switch-label" data-on="On" data-off="Off"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </div>
+            <div class="settings-item">
+              <strong>
+                <i class="fa fa-i-cursor"></i>
+                forms</strong>
 
-          <label class="switch switch-left-right">
-            <input class="switch-input" type="checkbox" name="settings.forms" ng-model="settings.forms"/>
-            <span class="switch-label" data-on="On" data-off="Off"></span>
-            <span class="switch-handle"></span>
-          </label>
-        </div>
-        <div class="settings-item">
-          <strong>
-            <i class="fa fa-arrows"></i>
-            scroll</strong>
+              <label class="switch switch-left-right">
+                <input class="switch-input" type="checkbox" name="settings.forms" ng-model="settings.forms"/>
+                <span class="switch-label" data-on="On" data-off="Off"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </div>
+            <div class="settings-item">
+              <strong>
+                <i class="fa fa-arrows"></i>
+                scroll</strong>
 
-          <label class="switch switch-left-right">
-            <input class="switch-input" type="checkbox" name="settings.scroll" ng-model="settings.scroll"/>
-            <span class="switch-label" data-on="On" data-off="Off"></span>
-            <span class="switch-handle"></span>
-          </label>
-        </div>
+              <label class="switch switch-left-right">
+                <input class="switch-input" type="checkbox" name="settings.scroll" ng-model="settings.scroll"/>
+                <span class="switch-label" data-on="On" data-off="Off"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </div>
 
-      </div>
+            <footer>
+              <button id="button-start" type="button" ng-click="proxyStart()" ng-disabled="proxyForm.$invalid">
+                Start
+                <i ng-if="loading" class="loading fa fa-spinner"></i>
+              </button>
+            </footer>
 
-      <section id="proxy-running" class="overlay" ng-if="running">
-        <div class="overlay-content">
-
-          <div class="proxy-urls">
+          </div>
+          <div id="proxy-urls" class="back">
 
             <!-- Local Host -->
             <div ng-if="ip.local">
@@ -101,31 +108,22 @@
             </div>
 
             <!-- Proxy URL -->
-            <div ng-if="ip.proxy">
+            <!-- <div ng-if="ip.proxy">
               <strong>
                 <i class="fa fa-bullseye"></i>
                 Proxying</strong>
               <a ng-href="{{ip.proxy}}" target="_blank">
                 {{ip.proxy}}
               </a>
-            </div>
+            </div> -->
+            <footer>
+              <button id="button-stop" type="button" name="proxy-stop" ng-disabled="!running" ng-click="proxyStop()">
+                Stop
+              </button>
+            </footer>
           </div>
-
-          <footer>
-            <button id="button-stop" type="button" name="proxy-stop" ng-disabled="!running" ng-click="proxyStop()">
-              Stop
-            </button>
-          </footer>
-
         </div>
       </section>
-
-      <footer>
-        <button id="button-start" type="button" ng-click="proxyStart()" ng-disabled="proxyForm.$invalid">
-          Start <i ng-if="loading" class="loading fa fa-spinner"></i>
-        </button>
-
-      </footer>
 
     </div>
     <!-- build:remove -->
