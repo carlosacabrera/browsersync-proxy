@@ -11,7 +11,7 @@ gulp.task('default', ['clean'], function() {
   gulp.start(['javascript', 'sass', 'html', 'fonts', 'images']);
 });
 
-gulp.task('serve', ['default'], function () {
+gulp.task('serve', function () {
   // Start browser process
   electron.start();
 
