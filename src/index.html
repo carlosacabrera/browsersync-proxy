@@ -16,99 +16,95 @@
       <!-- Form  -->
       <header id="window-header">
         <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && !running && proxyStart()">
-          <input id="field-sourceURL" placeholder="http://www.sapient.com"
-            required type="url" name="sourceURL" ng-disabled="running" ng-model="sourceURL" />
+          <input id="field-sourceURL" placeholder="http://www.sapient.com" required type="url" name="sourceURL" ng-disabled="running" ng-model="sourceURL"/>
           <i class="fa fa-bullseye"></i>
         </form>
       </header>
 
       <!-- Main  -->
-      <section id="main" class="flip-container">
-        <div class="flipper">
-          <div id="settings" class="front">
+      <section id="main">
+        <div id="settings">
 
-            <div class="settings-item">
-              <strong>
-                <i class="fa fa-chrome"></i>
-                open in browser</strong>
+          <div class="settings-item">
+            <strong>
+              <i class="fa fa-chrome"></i>
+              open in browser</strong>
 
-              <label class="switch switch-left-right">
-                <input class="switch-input" type="checkbox" name="settings.openWindow" ng-model="settings.openWindow"/>
-                <span class="switch-label" data-on="On" data-off="Off"></span>
-                <span class="switch-handle"></span>
-              </label>
-            </div>
-
-            <div class="settings-item">
-              <strong>
-                <i class="fa fa-hand-pointer-o"></i>
-                clicks</strong>
-
-              <label class="switch switch-left-right">
-                <input class="switch-input" type="checkbox" name="settings.clicks" ng-model="settings.clicks"/>
-                <span class="switch-label" data-on="On" data-off="Off"></span>
-                <span class="switch-handle"></span>
-              </label>
-            </div>
-            <div class="settings-item">
-              <strong>
-                <i class="fa fa-i-cursor"></i>
-                forms</strong>
-
-              <label class="switch switch-left-right">
-                <input class="switch-input" type="checkbox" name="settings.forms" ng-model="settings.forms"/>
-                <span class="switch-label" data-on="On" data-off="Off"></span>
-                <span class="switch-handle"></span>
-              </label>
-            </div>
-            <div class="settings-item">
-              <strong>
-                <i class="fa fa-arrows"></i>
-                scroll</strong>
-
-              <label class="switch switch-left-right">
-                <input class="switch-input" type="checkbox" name="settings.scroll" ng-model="settings.scroll"/>
-                <span class="switch-label" data-on="On" data-off="Off"></span>
-                <span class="switch-handle"></span>
-              </label>
-            </div>
-
-            <footer>
-              <button id="button-start" type="button" ng-click="proxyStart()" ng-disabled="proxyForm.$invalid">
-                Start
-                <i ng-if="loading" class="loading fa fa-spinner"></i>
-              </button>
-            </footer>
-
+            <label class="switch switch-left-right">
+              <input class="switch-input" type="checkbox" name="settings.openWindow" ng-model="settings.openWindow"/>
+              <span class="switch-label" data-on="On" data-off="Off"></span>
+              <span class="switch-handle"></span>
+            </label>
           </div>
-          <div id="proxy-urls" class="back">
 
-            <!-- Local Host -->
-            <div ng-if="ip.local">
-              <strong>
-                <i class="fa fa-desktop"></i>
-                Local</strong>
-              <a ng-href="{{ip.local}}" target="_blank">
-                {{ip.local}}
-              </a>
-            </div>
+          <div class="settings-item">
+            <strong>
+              <i class="fa fa-hand-pointer-o"></i>
+              clicks</strong>
 
-            <!-- External IPs  -->
-            <div ng-if="ip.externals">
-              <strong>
-                <i class="fa fa-wifi"></i>
-                External</strong>
-              <ul>
-                <li ng-repeat="externalIP in ip.externals">
-                  <a ng-href="{{$parent.ip.protocol}}://{{externalIP}}:{{$parent.ip.port}}" target="_blank">
-                    {{$parent.ip.protocol}}://{{externalIP}}:{{$parent.ip.port}}
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <label class="switch switch-left-right">
+              <input class="switch-input" type="checkbox" name="settings.clicks" ng-model="settings.clicks"/>
+              <span class="switch-label" data-on="On" data-off="Off"></span>
+              <span class="switch-handle"></span>
+            </label>
+          </div>
+          <div class="settings-item">
+            <strong>
+              <i class="fa fa-i-cursor"></i>
+              forms</strong>
 
-            <!-- Proxy URL -->
-            <!-- <div ng-if="ip.proxy">
+            <label class="switch switch-left-right">
+              <input class="switch-input" type="checkbox" name="settings.forms" ng-model="settings.forms"/>
+              <span class="switch-label" data-on="On" data-off="Off"></span>
+              <span class="switch-handle"></span>
+            </label>
+          </div>
+          <div class="settings-item">
+            <strong>
+              <i class="fa fa-arrows"></i>
+              scroll</strong>
+
+            <label class="switch switch-left-right">
+              <input class="switch-input" type="checkbox" name="settings.scroll" ng-model="settings.scroll"/>
+              <span class="switch-label" data-on="On" data-off="Off"></span>
+              <span class="switch-handle"></span>
+            </label>
+          </div>
+
+          <button id="button-start" type="button" ng-click="proxyStart()" ng-disabled="proxyForm.$invalid">
+            Start
+            <i ng-if="loading" class="loading fa fa-spinner"></i>
+          </button>
+
+        </div>
+        <div id="proxy-urls">
+
+          <!-- Local Host -->
+          <div ng-if="ip.local">
+            <strong>
+              <i class="fa fa-desktop"></i>
+              Local</strong>
+            <a ng-href="{{ip.local}}" target="_blank">
+              {{ip.local}}
+            </a>
+          </div>
+
+          <!-- External IPs  -->
+          <div ng-if="ip.externals">
+            <strong>
+              <i class="fa fa-wifi"></i>
+              External</strong>
+            <ul>
+              <li ng-repeat="externalIP in ip.externals">
+                <a ng-href="{{$parent.ip.protocol}}://{{externalIP}}:{{$parent.ip.port}}" target="_blank">
+                  {{$parent.ip.protocol}}://{{externalIP}}:{{$parent.ip.port}}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Proxy URL -->
+          <!-- <div ng-if="ip.proxy">
               <strong>
                 <i class="fa fa-bullseye"></i>
                 Proxying</strong>
@@ -116,12 +112,9 @@
                 {{ip.proxy}}
               </a>
             </div> -->
-            <footer>
-              <button id="button-stop" type="button" name="proxy-stop" ng-disabled="!running" ng-click="proxyStop()">
-                Stop
-              </button>
-            </footer>
-          </div>
+          <button id="button-stop" type="button" name="proxy-stop" ng-disabled="!running" ng-click="proxyStop()">
+            Stop
+          </button>
         </div>
       </section>
 

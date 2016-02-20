@@ -78,6 +78,10 @@ button.fa {
 #button-stop {
   @extend %button;
   width: 160px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 #button-start {
   background-color: $colorGreen;
@@ -100,13 +104,14 @@ button.fa {
   &.ng-invalid:focus {
     box-shadow: 0 0 5px rgba(81, 82, 238, 1);
   }
-  &:disabled, &:disabled ~ .fa {
+  &:disabled,
+  &:disabled ~ .fa {
     background: transparent;
     border-color: transparent;
     color: #fff;
+    text-overflow: ellipsis;
   }
 }
-
 #window-header {
   background: $colorHeader;
   padding: 28px 18px 14px;
@@ -124,52 +129,74 @@ button.fa {
     }
   }
 }
-// Flipping Flip
-.flip-container {
-  perspective: 1000;
-  /* flip speed goes here */
-  .flipper {
-    transition: 1s;
-    transform-style: preserve-3d;
-    // transform-origin: center center;
-    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    position: relative;
-  }
-  /* hide back of pane during swap */
-  .front,
-  .back {
-    backface-visibility: hidden;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: $mainHeight;
-    padding: 18px;
-  }
-  /* front pane, placed above back */
-  .front {
-    z-index: 2;
-    transform: rotateX(0deg) rotateY(0deg);
-  }
-  /* back, initially hidden pane */
-  .back {
-    transform: rotateY(-180deg);
-    background: #fff;
-  }
+// // Flipping Flip
+// .flip-container {
+//   perspective: 1000;
+//   /* flip speed goes here */
+//   .flipper {
+//     transition: 1s;
+//     transform-style: preserve-3d;
+//     // transform-origin: center center;
+//     transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+//     position: relative;
+//   }
+//   /* hide back of pane during swap */
+//   .front,
+//   .back {
+//     backface-visibility: hidden;
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     width: 100%;
+//     height: $mainHeight;
+//     padding: 18px;
+//   }
+//   /* front pane, placed above back */
+//   .front {
+//     z-index: 2;
+//     transform: rotateX(0deg) rotateY(0deg);
+//   }
+//   /* back, initially hidden pane */
+//   .back {
+//     transform: rotateY(-180deg);
+//     background: #fff;
+//   }
+// }
+// /* flip the pane when hovered */
+// .running .flip-container .flipper {
+//   transform: rotateY(180deg);
+// }
+#settings,
+#proxy-urls {
+  transition: all 0.4s ease-in-out;
+  left:0;
+  height: $mainHeight;
+  position: absolute;
+  width: 100%;
+  background: $colorBG;
+  padding: 19px;
+  box-shadow: 1px 0 13px rgba(0,0,0,0.4);
 }
-/* flip the pane when hovered */
-.running .flip-container .flipper {
-  transform: rotateY(180deg);
+
+.running #settings {
+  left: -99%;
 }
 #settings {
+  z-index: 2;
   .settings-item {
     @include clearfix;
-    padding: 4px 11px;
+    padding: 4px 8px;
     margin: 4px 0;
     border-bottom: 1px solid #ddd;
     &:last-of-type {
       border-bottom: 0 none;
       box-shadow: 0 0 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    &:first-of-type {
+      padding-top: 0;
+      margin-top: 0;
     }
     strong {
       text-transform: uppercase;
@@ -189,8 +216,9 @@ button.fa {
   }
 }
 #proxy-urls {
+  z-index: 1;
   > div {
-    padding: 0 11px 18px;
+    padding: 0 8px 18px;
     strong {
       text-transform: uppercase;
       font-weight: 400;
