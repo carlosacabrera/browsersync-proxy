@@ -33,9 +33,7 @@ app.on('ready', function() {
     fullscreenable: false,
     preload: true,
     titleBarStyle: 'hidden',
-    // icon : '',
-    // type: 'textured',
-    // title: 'Some App'
+    title: 'BrowserSync Proxy'
   });
 
   // and load the index.html of the app.

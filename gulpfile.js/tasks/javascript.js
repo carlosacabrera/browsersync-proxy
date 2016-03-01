@@ -7,7 +7,9 @@ gulp.task('javascript', function() {
   return gulp.src(config.javascript.src)
     .pipe($.plumber())
     .pipe($.babel())
-    .pipe($.jshint())
+    .pipe($.jshint({
+      esversion: 6
+    }))
     .pipe($.jshint.reporter('default'))
     .pipe(gulp.dest(config.javascript.dest))
 });
