@@ -16,9 +16,10 @@
       <!-- Form  -->
       <header id="window-header">
         <form novalidate name="proxyForm" ng-submit="proxyForm.$valid && !running && proxyStart()">
-          <input id="field-sourceURL" placeholder="http://www.sapient.com" required type="url" name="sourceURL" ng-disabled="running" ng-model="sourceURL"/>
+          <input id="field-sourceURL" placeholder="http://www.domain.com" required type="url" name="sourceURL" ng-disabled="running" ng-model="sourceURL"/>
           <i class="fa fa-bullseye"></i>
         </form>
+        <img class="running-image" src="images/bson.gif"/>
       </header>
 
       <!-- Main  -->
