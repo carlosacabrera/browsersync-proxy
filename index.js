@@ -32,7 +32,7 @@ app.on('ready', function() {
     maximizable: false,
     fullscreenable: false,
     preload: true,
-    titleBarStyle: 'hidden',
+    // titleBarStyle: 'hidden',
     title: 'BrowserSync Proxy'
   });
 
@@ -40,7 +40,7 @@ app.on('ready', function() {
   mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Open links in default browser
   mainWindow.webContents.on('new-window', function(e, url) {
